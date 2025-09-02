@@ -17,8 +17,7 @@ input_df = pd.DataFrame({
     'education': [education],
     'occupation': [occupation],
     'hours_per_week': [hours_per_week],
-    'experience': [experience]
-})
+    'experience': [experience]})
 st.write("## Input Data")
 st.write(input_df)
 
