@@ -25,24 +25,3 @@ st.write(input_df)
 if st.button("Predict Salary Class"):
     prediction = model.predict(input_df)
     st.success(f'Prediction: {prediction[0]}')
-
-# Batch prediction
-st.markdown("### Batch Prediction")
-st.markdown("Upload a CSV file for batch prediction:")
-uploaded_file = st.file_uploader("Upload a CSV file for batch prediction", type=['csv'])
-
-if uploaded_file is not None:
-    batch_data = pd.read_csv(uploaded_file)
-    st.write("Uploaded data preview:")
-    st.write(batch_data)
-    
-    batch_preds = model.predict(batch_data)
-    batch_preds = [str(pred) for pred in batch_preds]
-    st.write("Predictions:")
-    st.write(batch_preds)
-    # Batch predictions as downloadable CSV
-     batch_preds_df = pd.DataFrame(batch_preds, columns=['Predicted Salary Class'])
-    st.write(batch_preds_df)
-
-    csv = batch_preds_df.to_csv(index=False).encode('utf-8')
-    st.download_button('Download Predictions CSV', csv, file_name='predicted_classes.csv', mime='text/csv')
